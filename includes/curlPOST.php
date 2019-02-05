@@ -2,8 +2,8 @@
 
 //=======================SET THE API USER CREDENTIALS========================
 $apiUrl = "https://202.84.39.107/crmapi/rest/v2/";
-$apiUsername = "sirajum.monir";
-$apiPassword = "P5KPL-AM";
+$apiUsername = "protitee.yasmine";
+$apiPassword = "protitee";
 $apiOrganisation = "BEXIMCO";
 
 // ============================== Functions ==================================
