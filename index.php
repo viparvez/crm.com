@@ -13,18 +13,23 @@
 
 <?php
 	if (isset($_POST['submit'])) {
-		$fileName = basename($_FILES["fileToUpload"]["name"],"txt").time().".txt";
-
-		echo $fileName;
-
-		/*$file = move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $fileName);
-		$target_file = "uploads/" . basename($_FILES["fileToUpload"]["name"]);
-		$uploadOk = 1;
-		$textFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		
-		if($textFileType != "txt") {
+		$fileName = "uploads/".basename($_FILES["fileToUpload"]["name"],"txt").time().".txt";
+		$fileType = pathinfo(basename($_FILES["fileToUpload"]["name"]),PATHINFO_EXTENSION);
+		
+		if($fileType != "txt") {
 		    echo "Sorry, only .txt are allowed.";
-		    $uploadOk = 0;
-		}*/
+		} else {
+			$file = move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $fileName);
+		}
+
+			/*$uploadOk = 1;
+			
+			
+			if($textFileType != "txt") {
+			    echo "Sorry, only .txt are allowed.";
+			    $uploadOk = 0;
+			}
+		*/
 	}
 ?>
