@@ -15,6 +15,9 @@
 	
 	require 'includes/generateToken.php';
 	require 'includes/createPayment.php';
+	require 'includes/checkStatus.php';
+	require 'includes/getStringBetween.php';
+	require 'includes/activation.php';
 
 	if (isset($_POST['submit'])) {
 		
@@ -31,10 +34,17 @@
 			$token = getToken();
 
 			foreach ($rows as $key => $value) {
+				//Payment
 				$paymentInfo = explode(" ", $value);
-				$pay = createPayment($paymentInfo[0],$paymentInfo[1],'Cash', $token);
+				$accrecnum = trim($paymentInfo[0]);
+				$amount = trim($paymentInfo[1]);
+				$pay = createPayment($accrecnum,$amount,'Cash', $token);
+				//Activation
+				$status= checkStatus($accrecnum);
+				$sub_id = "S0".get_string_between($status,"S0","\"");
+				$activate = activate($sub_id);
 
-				echo $pay."</br>";
+				echo $activate." account number: $accrecnum</br>";
 			}
 		}
 
