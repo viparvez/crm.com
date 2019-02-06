@@ -12,6 +12,10 @@
 </html>
 
 <?php
+	
+	require 'includes/generateToken.php';
+	require 'includes/createPayment.php';
+
 	if (isset($_POST['submit'])) {
 		
 		$fileName = "uploads/".basename($_FILES["fileToUpload"]["name"],"txt").time().".txt";
@@ -21,15 +25,18 @@
 		    echo "Sorry, only .txt are allowed.";
 		} else {
 			$file = move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $fileName);
+
+			$rows = explode(',', file_get_contents($fileName));
+
+			$token = getToken();
+
+			foreach ($rows as $key => $value) {
+				$paymentInfo = explode(" ", $value);
+				$pay = createPayment($paymentInfo[0],$paymentInfo[1],'Cash', $token);
+
+				echo $pay."</br>";
+			}
 		}
 
-			/*$uploadOk = 1;
-			
-			
-			if($textFileType != "txt") {
-			    echo "Sorry, only .txt are allowed.";
-			    $uploadOk = 0;
-			}
-		*/
 	}
 ?>
