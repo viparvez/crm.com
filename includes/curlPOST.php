@@ -2,14 +2,15 @@
 
 //=======================SET THE API USER CREDENTIALS========================
 $apiUrl = "https://202.84.39.107/crmapi/rest/v2/";
-$apiUsername = "sirajum.monir";
-$apiPassword = "P5KPL-AM";
+$apiUsername = "protitee.yasmine";
+$apiPassword = "protitee";
 $apiOrganisation = "BEXIMCO";
 
 // ============================== Functions ==================================
 //==============================callCURL()=============================
 
-function curlPOST($data,$actionURL){
+function curlPOST($data,$actionURL)
+{
 	
 	global $apiUrl;
 	
@@ -29,7 +30,8 @@ function curlPOST($data,$actionURL){
 
 	$server_output = curl_exec ($ch);
 
-	if ($server_output === FALSE) {
+	if ($server_output === FALSE) 
+	{
 	    printf("cUrl error (#%d): %s<br>\n", curl_errno($ch),
 	    htmlspecialchars(curl_error($ch)));
 	}
